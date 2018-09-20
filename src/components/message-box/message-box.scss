@@ -1,0 +1,135 @@
+message-box {
+  // todos os elementos dentro do <message-box>
+  display: flex;
+  margin-bottom: 10px;
+  .text {
+    // classe .text dentro do <message-box>
+    background-color: #efefef;
+    padding: 7px 5px;
+    box-shadow: 1px 1px 3px #ccc;
+    color: #333;
+    overflow: auto;
+    p {
+      // todos os paragrafos <p> dentro do <message-box>
+      font-size: 1.1em;
+      margin: 0;
+    }
+    p.timestamp {
+      // todos os paragrafos <p> com classe timestamp
+      font-size: 0.8em;
+      margin-top: 5px;
+      color: #999;
+    }
+    p ion-icon.primeiro-icone {
+      float: right;
+      margin-left: -4px;
+    }
+    p ion-icon.segundo-icone {
+      float: right;
+      padding-left: 15px;
+    }
+  }
+  .sender-background {
+    background-color: #baf46e;
+    // float: right !important;
+    // background-color: map-get($colors, primary ); // se quisesse usar alguma variável do tema
+  }
+  .ja-leu {
+    color: map-get($colors, primary);
+  }
+  .chatBubble {
+    img.profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 10px;
+    }
+    img.profile-pic.left {
+      left: 10px;
+    }
+    img.profile-pic.right {
+      right: 10px;
+    }
+    .message {
+      font-size: medium;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    .message-detail {
+      white-space: nowrap;
+      font-size: 14px;
+    }
+    .chat-bubble {
+      border-radius: 5px;
+      display: inline-block;
+      padding: 10px 18px;
+      position: relative;
+      margin: 10px;
+      max-width: 80%;
+    }
+    .chat-bubble:before {
+      content: "\00a0";
+      display: block;
+      height: 16px;
+      width: 9px;
+      position: absolute;
+      bottom: -7.5px;
+    }
+    .chat-bubble.false {
+      background-color: #e6e5eb;
+      float: left;
+    }
+    .chat-bubble.false .message {
+      color: black;
+    }
+    .chat-bubble.false:before {
+      background-color: #e6e5eb;
+      left: 10px;
+      -webkit-transform: rotate(70deg) skew(5deg);
+    }
+    .chat-bubble.false .message-detail {
+      color: black;
+    }
+    .chat-bubble.true .message {
+      color: white;
+    }
+    .chat-bubble.true .message-detail {
+      color: white;
+    }
+    .chat-bubble.true {
+      background-color: #158ffe;
+      color: #fff;
+      float: right;
+    }
+    .chat-bubble.true:before {
+      background-color: #158ffe;
+      right: 10px;
+      -webkit-transform: rotate(118deg) skew(-5deg);
+    }
+    .chat-bubble.true a.autolinker {
+      color: #000;
+      font-weight: bold;
+    }
+    .chat-img.false {
+      float: left;
+    }
+    .chat-img.true {
+      float: right;
+      display: none;
+    }
+    .chat-trans.true {
+      float: right;
+    }
+    .chat-trans.false {
+      float: left;
+    }
+  }
+  page-chat {
+    .chatBubble {
+      .chat-bubble .false {
+        float: left;
+      }
+    }
+  }
+}

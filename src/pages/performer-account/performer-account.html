@@ -1,0 +1,242 @@
+<!--
+  Generated template for the AccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Account</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openArtist()">
+        <ion-icon ios="ios-pin" md="md-pin"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="profile">
+      Profile
+    </ion-segment-button>
+    <ion-segment-button value="services" icon-bottom>
+      Services
+    </ion-segment-button>
+    <ion-segment-button value="portfoilo">
+      Portfoilo
+    </ion-segment-button>
+    <ion-segment-button value="reviews">
+      Reviews
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="segment">
+    <div *ngSwitchCase="'profile'">
+      <div style="text-align: center; background: #f4eae9; padding-top: 15px; border-bottom-color: #B3A5A5; border-bottom-width: 2px !important; border-bottom-style: dashed;">
+        <img src="{{profile.avatar || placeholder}}" (click)="showUploadOption()" style="width: 100px; border-radius: 50%; max-width: 100px; max-height: 100px; border-width: 3px; border-style: solid; border-color: white;"
+          class="blush-avatar">
+        <p *ngIf=" ! profile.avatar ">Tap on the picture to change avatar!</p>
+      </div>
+      <div *ngIf="isLoading" style="text-align: center; padding-top: 45%; padding-right: 10px; padding-left: 10px;">
+        <ion-spinner icon="spiral"></ion-spinner>
+        <br>
+        <span>{{loadingStatus}}</span>
+      </div>
+      <div *ngIf="!isLoading">
+        <div style="padding-top: 20px; text-align: center; font-family: RaleWay; background-color: #f4eae9;">
+          <b style="font-size: 23px;">My Profile</b>
+        </div>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>Stage Name</ion-label>
+          <ion-input class="white-input" placeholder="StageName" type="text" [(ngModel)]="profile.stageName"></ion-input>
+        </label>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>First Name</ion-label>
+          <ion-input class="white-input" placeholder="First Name" type="text" [(ngModel)]="profile.firstName"></ion-input>
+        </label>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>Last Name</ion-label>
+          <ion-input class="white-input" placeholder="Last Name" type="text" [(ngModel)]="profile.lastName"></ion-input>
+        </label>
+        <ion-item style="padding-left: 0px;">
+          <ion-label>Gender</ion-label>
+          <ion-select [(ngModel)]="profile.gender">
+            <ion-option value="f">Female</ion-option>
+            <ion-option value="m">Male</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item style="padding-left: 0px;">
+          <ion-label>Birthdate</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="profile.birthDate"></ion-datetime>
+        </ion-item>
+        <div style="text-align: center; font-family: RaleWay; padding: 10px;">
+          <b style="font-size: 23px;">Contact Information</b>
+        </div>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>Email</ion-label>
+          <ion-input class="white-input" type="email" placeholder="Email" [(ngModel)]="profile.email"></ion-input>
+        </label>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>Phone Number</ion-label>
+          <ion-input class="white-input" type="number" placeholder="Contact Number" [(ngModel)]="profile.contactNumber"></ion-input>
+        </label>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>Address</ion-label>
+          <ion-input class="white-input" type="text" placeholder="Address" [(ngModel)]="profile.address"></ion-input>
+        </label>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>City</ion-label>
+          <ion-input class="white-input" type="text" placeholder="City" [(ngModel)]="profile.city"></ion-input>
+        </label>
+        <label style="padding-right: 5%;">
+          <ion-label color="primary" stacked>State</ion-label>
+          <ion-input class="white-input" type="text" placeholder="State" [(ngModel)]="profile.state"></ion-input>
+        </label>
+        <ion-item style="padding-left: 0px;">
+          <ion-label>Service Type</ion-label>
+          <ion-select [(ngModel)]="profile.serviceType">
+            <ion-option value="DJ">DJ</ion-option>
+            <ion-option value="Artist">Artist</ion-option>
+            <ion-option value="Band">Band</ion-option>
+          </ion-select>
+        </ion-item>
+        <div style="text-align: center; font-family: RaleWay; padding: 10px;">
+          <b style="font-size: 23px;">Account Credentials</b>
+        </div>
+        <label style="padding-bottom: 0px; border-bottom-color: #f4eae9; border-bottom-width: 2px !important; border-bottom-style: dashed; padding-right: 5%;">
+          <button ion-button class="round-white-back" style="background-color: #f1807a;color: white;" (click)="changePassword()">Change Password</button>
+          <br>
+        </label>
+        <label style="padding-bottom: 0px; padding-right: 5%;">
+          <button ion-button class="round-white-back" style="background-color: black;color: white;" (click)="updateProfile()">Update Account</button>
+          <br>
+        </label>
+      </div>
+    </div>
+    <div *ngSwitchCase="'services'">
+      <div class="grey-border" style="margin-top: 10px;">
+        <ion-item>
+          <ion-input placeholder="Service Name" clearInput [(ngModel)]="serviceName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Description" clearInput [(ngModel)]="description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Price (USD)" clearInput [(ngModel)]="price"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Duration(mins)" clearInput [(ngModel)]="duration"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button color="secondary" full (click)="addService()">Add</button>
+        </ion-item>
+      </div>
+      <ion-list>
+        <ion-item class="grey-border" *ngFor="let service of services">
+          <ion-row>
+            Service Name : {{service.name}}
+          </ion-row>
+          <ion-row>
+            Service Description : {{service.description}}
+          </ion-row>
+          <ion-row>
+            Price : $ {{service.price}}
+          </ion-row>
+          <ion-row>
+            Duration : {{service.duration}} mins
+          </ion-row>
+          <ion-row>
+            <button ion-button full color="danger" (click)="removeService(service)" style="height: 24px;">Delete</button>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'portfoilo'">
+      <ion-row class="grey-border" style="height: 120px;padding: 10px;">
+        <ion-col>
+          <ion-row>
+            <button (click)="selectImage()" style="height: 20px;">
+              Choose File
+            </button>
+          </ion-row>
+          <ion-row>
+            <img *ngIf="selectedImage" [src]="selectedImage" style="width: 80px;height: 60px;max-height: 60px;min-height: 60px;">
+          </ion-row>
+          <ion-row>
+            <button *ngIf="selectedImage" (click)="removeImage()" style="background-color: #f53d3d;height: 20px;width: 80px;color: white;">Delete</button>
+          </ion-row>
+        </ion-col>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-input style="height: 100px; border: 1px solid" placeholder="Description" clearInput [(ngModel)]="portfoiloDescription"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <button ion-button color="secondary" full (click)="addPortfoilo(0)">Add</button>
+      <ion-row class="grey-border" style="height: 120px;padding: 10px;">
+        <ion-col>
+          <ion-item>
+            <ion-input placeholder="Youtube link" clearInput [(ngModel)]="youtubeLink"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Description" clearInput [(ngModel)]="youtubeLinkDescription"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <button ion-button color="secondary" full (click)="addPortfoilo(1)">Add</button>
+      <ion-row class="grey-border" style="height: 120px;padding: 10px;">
+        <ion-col>
+          <ion-item>
+            <ion-input placeholder="SoundCloud link" clearInput [(ngModel)]="soundcloudLink"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Description" clearInput [(ngModel)]="soundcloudLinkDescription"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <button ion-button color="secondary" full (click)="addPortfoilo(2)">Add</button>
+      <ion-list>
+        <ion-item *ngFor="let portfolio of artistPortfolio">
+          <ion-avatar item-start>
+            <img src="{{portfolio.attributes.artistInfo.avatar || profilePicTemp}}" item-left>
+          </ion-avatar>
+          <h2>{{portfolio.attributes.name}}</h2>
+          <p>{{portfolio.attributes.description}}</p>
+          <div *ngIf="portfolio.attributes.type === 0">
+            <ion-icon ios="ios-image" md="md-image" style="color:red;"></ion-icon>
+          </div>
+          <div *ngIf="portfolio.attributes.type === 1">
+            <ion-icon ios="logo-youtube" md="logo-youtube" style="color:red;"></ion-icon>
+          </div>
+          <div *ngIf="portfolio.attributes.type === 2">
+            <ion-icon ios="ios-musical-notes" md="md-musical-notes" style="color:red;"></ion-icon>
+          </div>
+          <span style="color:gray;font-size:13px">{{ portfolio.attributes.createdAt | date: 'MMM dd, HH:mm'}}</span>
+          <button ion-button full color="danger" (click)="removePortfolio(portfolio)" style="height: 24px;">Delete</button>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'reviews'">
+      <ion-list>
+        <ion-item *ngFor="let review of artistReviews">
+          <ion-avatar item-start>
+            <img src="{{review.attributes.customerInfo.avatar || profilePicTemp}}" item-left>
+          </ion-avatar>
+          <h2>{{review.attributes.title}}</h2>
+          <div class="col" style="padding-left: 0px; padding-bottom: 0px; text-align: left;">
+
+            <ion-icon [ngClass]="review.attributes.ratings >= 1 ? 'ion-ios-heart' : 'ion-ios-heart-outline'" style="color:#f1807a;"></ion-icon>
+            <ion-icon [ngClass]="review.attributes.ratings >= 2 ? 'ion-ios-heart' : 'ion-ios-heart-outline'" style="color:#f1807a;"></ion-icon>
+            <ion-icon [ngClass]="review.attributes.ratings >= 3 ? 'ion-ios-heart' : 'ion-ios-heart-outline'" style="color:#f1807a;"></ion-icon>
+            <ion-icon [ngClass]="review.attributes.ratings >= 4 ? 'ion-ios-heart' : 'ion-ios-heart-outline'" style="color:#f1807a;"></ion-icon>
+            <ion-icon [ngClass]="review.attributes.ratings == 5 ? 'ion-ios-heart' : 'ion-ios-heart-outline'" style="color:#f1807a;"></ion-icon>
+          </div>
+          <p>{{review.attributes.description}}</p>
+          <p>by
+            <em>{{review.attributes.customerInfo.firstName}} {{review.attributes.customerInfo.lastName}} {{review.attributes.createdAt.getMonth()
+              + 1}} / {{review.attributes.createdAt.getDate() + 1}} / {{review.attributes.createdAt.getFullYear()}}</em>
+          </p>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

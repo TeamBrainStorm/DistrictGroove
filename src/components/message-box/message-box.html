@@ -1,0 +1,13 @@
+<div class="chatBubble" style="width: 100%">
+  <div style="text-align: center">
+    <span style="color:gray;font-size:13px">{{ message.createdAt | date: 'MMM dd, HH:mm'}}</span>
+  </div>
+  <div>
+    <img class="chat-img {{isFromSender}}" style="padding: 2px;border-radius: 50%;width: 40px;" src="{{photo || profilePicTemp}}">
+    <div class="chat-bubble {{isFromSender}}">
+      <div class="message">
+        {{message.message}}
+      </div>
+    </div>
+  </div>
+</div>

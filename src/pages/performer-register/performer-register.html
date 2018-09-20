@@ -1,0 +1,53 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding style="background-color: black">
+  <div style="text-align: center;">
+    <h1 style="color: rgb(255, 255, 255); font-size: 30px;">Create your
+      <b>Preformer Account</b> for
+      <b>FREE.</b>
+    </h1>
+    <h1 style="color: rgb(255, 255, 255); font-size: 16px;">No credit card required.</h1>
+  </div>
+  <ion-input class="round-white-back" placeholder="Stage Name" type="text" style="height: 40px !important;" [(ngModel)]="register.stageName"
+    required></ion-input>
+  <ion-input class="round-white-back" placeholder="First Name" type="text" style="height: 40px !important;" [(ngModel)]="register.firstName"
+    required></ion-input>
+  <ion-input class="round-white-back" placeholder="Last Name" type="text" style="height: 40px !important;" [(ngModel)]="register.lastName"
+    required></ion-input>
+  <ion-input class="round-white-back" placeholder="Email" type="email" style="height: 40px !important;" [(ngModel)]="register.email"
+    required></ion-input>
+  <ion-input class="round-white-back" placeholder="Mobile Number" type="number" style="height: 40px !important;" [(ngModel)]="register.contactNumber"
+    required></ion-input>
+  <ion-input class="round-white-back" placeholder="Password" type="password" style="height: 40px !important;" [(ngModel)]="register.password"
+    required></ion-input>
+  <ion-input class="round-white-back" placeholder="Confirm Password" type="password" style="height: 40px !important;" [(ngModel)]="register.confirmPassword"
+    required></ion-input>
+  <ion-item class="round-white-back" style="padding-left: 8px;">
+    <ion-label>Service Type</ion-label>
+    <ion-select [(ngModel)]="register.serviceType">
+      <ion-option value="DJ">DJ</ion-option>
+      <ion-option value="Artist">Artist</ion-option>
+      <ion-option value="Band">Band</ion-option>
+    </ion-select>
+  </ion-item>
+  <div>
+    <a href="#" onclick="window.open('', '_system', 'location=yes'); return false;" style="font-size:12px;">By creating an account, I agree to DistrictGroove's
+      <b>Terms of Service</b> and
+      <b>Privacy Policy</b>
+    </a>
+  </div>
+  <button ion-button class="round-white-back" (click)="doRegister()">Register Now!</button>
+
+</ion-content>

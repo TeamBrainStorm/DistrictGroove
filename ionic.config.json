@@ -1,0 +1,7 @@
+{
+  "name": "groove",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

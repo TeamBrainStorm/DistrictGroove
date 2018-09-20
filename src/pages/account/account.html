@@ -1,0 +1,81 @@
+<!--
+  Generated template for the AccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Account</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openChat()">
+        <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding style="background: #F2F2F2">
+  <div style="text-align: center; background: #424242; padding-top: 15px; border-bottom-color: #B3A5A5; border-bottom-width: 2px !important; border-bottom-style: dashed;">
+    <img src="{{profile.avatar || placeholder}}" (click)="showUploadOption()" style="width: 100px; border-radius: 50%; max-width: 100px; max-height: 100px; border-width: 3px; border-style: solid; border-color: white;"
+      class="blush-avatar">
+    <p *ngIf=" ! profile.avatar ">Tap on the picture to change avatar!</p>
+  </div>
+  <div *ngIf="isLoading" style="text-align: center; padding-top: 45%; padding-right: 10px; padding-left: 10px;">
+    <ion-spinner icon="spiral"></ion-spinner>
+    <br>
+    <span>{{loadingStatus}}</span>
+  </div>
+  <div *ngIf="!isLoading">
+    <div style="padding-top: 20px; text-align: center; font-family: RaleWay; background-color: #f4eae9;">
+      <b style="font-size: 23px;">My Profile</b>
+    </div>
+    <label style="padding-right: 5%;">
+      <ion-label color="primary" stacked>First Name</ion-label>
+      <ion-input class="white-input" placeholder="First Name" type="text" [(ngModel)]="profile.firstName"></ion-input>
+    </label>
+    <label style="padding-right: 5%;">
+      <ion-label color="primary" stacked>Last Name</ion-label>
+      <ion-input class="white-input" placeholder="Last Name" type="text" [(ngModel)]="profile.lastName"></ion-input>
+    </label>
+    <ion-item style="padding-left: 0px;">
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="profile.gender">
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="padding-left: 0px;">
+      <ion-label>Birthdate</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="profile.birthDate"></ion-datetime>
+    </ion-item>
+    <div style="text-align: center; font-family: RaleWay; padding: 10px;">
+      <b style="font-size: 23px;">Contact Information</b>
+    </div>
+    <label style="padding-right: 5%;">
+      <ion-label color="primary" stacked>Email</ion-label>
+      <ion-input class="white-input" type="email" placeholder="Email" [(ngModel)]="profile.email"></ion-input>
+    </label>
+    <label style="padding-right: 5%;">
+      <ion-label color="primary" stacked>Phone Number</ion-label>
+      <ion-input class="white-input" type="number" placeholder="Contact Number" [(ngModel)]="profile.contactNumber"></ion-input>
+    </label>
+    <label style="padding-right: 5%;">
+      <ion-label color="primary" stacked>Address</ion-label>
+      <ion-input class="white-input" type="text" placeholder="Address" [(ngModel)]="profile.address"></ion-input>
+    </label>
+    <div style="text-align: center; font-family: RaleWay; padding: 10px;">
+      <b style="font-size: 23px;">Account Credentials</b>
+    </div>
+    <label style="padding-bottom: 0px; border-bottom-color: #2C3E50; border-bottom-width: 2px !important; border-bottom-style: dashed; padding-right: 5%;">
+      <button ion-button class="round-white-back" style="background-color: #f1807a;color: white;" (click)="changePassword()">Change Password</button>
+      <br>
+    </label>
+    <label style="padding-bottom: 0px; padding-right: 5%;">
+      <button ion-button class="round-white-back" style="background-color: black;color: white;" (click)="updateProfile()">Update Account</button>
+      <br>
+    </label>
+  </div>
+</ion-content>

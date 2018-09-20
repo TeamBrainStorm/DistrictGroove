@@ -1,0 +1,62 @@
+<!--
+  Generated template for the BookPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Book</ion-title>
+    <ion-buttons end *ngIf="hasLoggedIn">
+      <button ion-button icon-only (click)="openChat()">
+        <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="list">
+
+    <div class="item item-divider" style="text-align: center; font-family: RaleWay;">
+      <b style="font-size: 23px">Contact Information</b>
+    </div>
+    <ion-item>
+      <ion-label fixed>FirstName</ion-label>
+      <ion-input class="round-white-back" type="text" [(ngModel)]="profile.firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>LastName</ion-label>
+      <ion-input class="round-white-back" type="text" [(ngModel)]="profile.lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>ContactNumber</ion-label>
+      <ion-input class="round-white-back" type="number" [(ngModel)]="profile.contactNumber"></ion-input>
+    </ion-item>
+    <div class="item item-divider" style="padding-top: 20px; padding-bottom: 20px; text-align: center; font-family: RaleWay;">
+      <b style="font-size: 23px">Selected Artist</b>
+    </div>
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="artist.attributes.avatar || profilePicTemp">
+      </ion-avatar>
+      <h2 *ngIf="!artist.attributes.stageName">{{artist.attributes.firstName}} {{artist.attributes.lastName}}</h2>
+      <h2 *ngIf="artist.attributes.stageName">{{artist.attributes.stageName}}</h2>
+      <p>{{artist.attributes.serviceType}}</p>
+    </ion-item>
+    <div class="item item-divider" style="padding-top: 20px; padding-bottom: 20px; text-align: center; font-family: RaleWay; ">
+      <b style="font-size: 23px">Schedule</b>
+    </div>
+    <ion-item>
+      <ion-label>Book Time</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY- h:mm A" [(ngModel)]="datetimeValue"></ion-datetime>
+    </ion-item>
+    <div class="row">
+      <div class="col" style="color: white;">Total Bill:</div>
+      <div class="col text-right" style="color: white;">
+        <b>$ {{amount}}</b>
+      </div>
+    </div>
+    <button style="width: 100%" ion-button (click)="book(datetimeValue)">Book Now</button>
+  </div>
+</ion-content>

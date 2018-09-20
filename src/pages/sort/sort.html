@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{mode}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list radio-group [(ngModel)]="filter.sort">
+    <ion-item>
+      <ion-label>Distance</ion-label>
+      <ion-radio value="Distance"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Price : High to Low</ion-label>
+      <ion-radio value="highToLow"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Price : Low to High</ion-label>
+      <ion-radio value="lowToHigh"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rating</ion-label>
+      <ion-radio value="Rating"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <button ion-button color="dark" (click)="apply()" style="width: 100%;">Apply</button>
+</ion-content>

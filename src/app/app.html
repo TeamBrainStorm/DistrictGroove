@@ -1,0 +1,76 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <div style="background: #242424" *ngIf="hasLoggedIn; else loggedOut">
+        <div style="width: 100%; text-align: center;">
+          <div style="padding-top: 20px;">
+            <img src="{{currentUser.attributes.avatar || profilePicTemp}}" class="blush-avatar" (click)="viewProfile()">
+          </div>
+          <div style="padding-top: 10px; font-size: 16px; padding-bottom: 10px;">
+
+            <button class="white-button" (click)="viewProfile()" style="padding: 0px;">
+              <span> {{currentUser.attributes.firstName}} {{currentUser.attributes.lastName}} </span>
+            </button>
+
+            <button class="white-button" style="padding: 0px; padding-left: 15px; padding-right: 15px;">
+              <span> | </span>
+            </button>
+
+            <button class="white-button" (click)="doLogout()" style="padding: 0px;">
+              <span> Log Out </span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+      <ng-template #loggedOut>
+        <div style="width: 100%; text-align: center; background: #242424;">
+          <div style="padding-top: 20px;">
+            <img src="{{profilePicTemp}}" class="blush-avatar" (click)="viewProfile()">
+          </div>
+
+          <div style="padding-top: 10px; font-size: 16px; padding-bottom: 10px;">
+            <button class="white-button" (click)="showRegisterForm()" style="padding: 0px;">
+              <span> Sign Up </span>
+            </button>
+
+            <button class="white-button" style="padding: 0px;padding-left: 15px; padding-right: 15px;">
+              <span> | </span>
+            </button>
+
+            <button class="white-button" (click)="login()" style="padding: 0px;">
+              <span> Log In </span>
+            </button>
+
+          </div>
+
+        </div>
+      </ng-template>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ng-container *ngIf="hasLoggedIn; else elseTemplate">
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of loggedInPages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon"></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon"></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ng-template>
+
+  </ion-content>
+
+</ion-menu>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

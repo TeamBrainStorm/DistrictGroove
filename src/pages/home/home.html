@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end *ngIf="hasLoggedIn">
+      <button ion-button icon-only (click)="openChat()">
+        <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content overflow-scroll="true" style="background:#F2F2F2">
+  <div style="padding: 10px; background: #F2F2F2">
+    <ion-input [(ngModel)]="address" id="addressInput" class="white-input" placeholder="Find Artist By Entering Location..."
+      type="text"></ion-input>
+  </div>
+  <div class="row" style="padding: 15px;">
+    <div class="col">
+      <ion-label class="non-button" icon-left (click)="showFilters(true, 'Filters')" style="height: 30px !important;">
+        <ion-icon name="funnel"></ion-icon>
+        Filter
+      </ion-label>
+    </div>
+
+    <div class="col" style="text-align: center;">
+      <ion-label class="non-button" icon-left (click)="showFilters(false, 'Sort By')" style="height: 30px !important;">
+        <ion-icon name="swap"></ion-icon>
+        Sort
+      </ion-label>
+    </div>
+
+    <div class="col" style="text-align: right;">
+      <ion-label class="non-button" icon-left (click)="findArtistsNearby()" style="height: 30px !important;">
+        <ion-icon ios="ios-locate" md="md-locate"></ion-icon>
+      </ion-label>
+
+    </div>
+  </div>
+
+
+  <ion-list>
+    <ion-card style="background:#FFFFFF" class="measure f1 center  br3 pa3 pa4-ns mv3 ba b--black-10" *ngFor="let artist of artists"
+      (click)="itemTapped($event, artist)">
+      <img class="mw5 center  br-100" [src]="artist.attributes.avatar || profilePicTemp">
+      <div class="mt4 tc">{{artist.attributes.stageName}}</div>
+
+    </ion-card>
+  </ion-list>
+</ion-content>
